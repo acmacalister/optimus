@@ -1,0 +1,18 @@
+development:
+  aws_key: your_s3_key
+  aws_secret: your_s3_secret
+  bucket: mybucket
+  path: folderinmybucket
+  provisioning_profile_name: name_of_your_pp
+staging:
+  aws_key: your_s3_key
+  aws_secret: your_s3_secret
+  bucket: mybucket
+  path: folderinmybucket
+  provisioning_profile_name: name_of_your_pp
+production:
+  aws_key: your_s3_key
+  aws_secret: your_s3_secret
+  bucket: mybucket
+  path: folderinmybucket
+  provisioning_profile_name: name_of_your_pp

@@ -1,13 +1,14 @@
 package main
 
 import (
+	"github.com/acmacalister/skittles"
 	"log"
 	"os"
 )
 
 func main() {
 	if len(os.Args) < 2 {
-		log.Fatal("please provide environment")
+		log.Fatal(skittles.Red("please provide environment"))
 	}
 
 	environment := os.Args[1]
