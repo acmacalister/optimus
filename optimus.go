@@ -1,26 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 )
 
-const (
-	Archive   = ".xcarchive"
-	IPA       = ".ipa"
-	Workspace = ".xcworkspace"
-)
-
 func main() {
-
-	if len(os.Args) < 3 {
-		log.Fatal("please provide name of xcode project and aws bucket name")
+	if len(os.Args) < 2 {
+		log.Fatal("please provide environment")
 	}
 
-	name := os.Args[1]
-	bucketName := os.Args[2]
-	fmt.Println(name, bucketName)
+	environment := os.Args[1]
 
-	buildIPA(name)
+	loadConfig(environment)
+	buildIPA()
 }

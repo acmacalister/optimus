@@ -10,12 +10,18 @@ import (
 	"strings"
 )
 
-func buildIPA(name string) {
-	archive := name + Archive
-	ipa := name + IPA
-	workspace := name + Workspace
+const (
+	Archive   = ".xcarchive"
+	IPA       = ".ipa"
+	Workspace = ".xcworkspace"
+)
 
-	out, err := exec.Command("xcodebuild", "-workspace", workspace, "-scheme", strings.Title(name), "archive", "-archivePath", archive).CombinedOutput()
+func buildIPA() {
+	archive := Config.projectName + Archive
+	ipa := Config.projectName + IPA
+	workspace := Config.projectName + Workspace
+
+	out, err := exec.Command("xcodebuild", "-workspace", workspace, "-scheme", strings.Title(Config.projectName), "archive", "-archivePath", archive).CombinedOutput()
 	if err != nil {
 		log.Fatal(string(out))
 	}
@@ -26,10 +32,12 @@ func buildIPA(name string) {
 		log.Fatal(string(out))
 	}
 	fmt.Println(string(out))
+
+	uploadIPA(ipa)
 }
 
 func uploadIPA(file string) {
-	s := s3.New(aws.Auth{Config.AwsKey, Config.AwsSecret}, aws.USWest2)
+	s := s3.New(aws.Auth{Config.awsKey, Config.awsSecret}, aws.USWest2)
 	bucket := s.Bucket(Config.bucket)
 	b, err := ioutil.ReadFile(file)
 
