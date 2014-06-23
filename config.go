@@ -7,12 +7,12 @@ import (
 )
 
 type configuration struct {
-	projectName             string
-	awsKey                  string
-	awsSecret               string
-	bucket                  string
-	path                    string
-	provisioningProfileName string
+	projectName     string
+	awsKey          string
+	awsSecret       string
+	bucket          string
+	path            string
+	signingIdentity string
 }
 
 var Config = new(configuration)
@@ -29,5 +29,5 @@ func loadConfig(environment string) {
 	Config.awsSecret, _ = conf.Get(environment + ".aws_secret")
 	Config.bucket, _ = conf.Get(environment + ".bucket")
 	Config.path, _ = conf.Get(environment + ".path")
-	Config.provisioningProfileName, _ = conf.Get(environment + ".provisioning_profile_name")
+	Config.signingIdentity, _ = conf.Get(environment + ".signing_identity")
 }

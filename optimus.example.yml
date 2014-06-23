@@ -3,16 +3,19 @@ development:
   aws_secret: your_s3_secret
   bucket: mybucket
   path: folderinmybucket
-  provisioning_profile_name: name_of_your_pp
+  signing_identity: iPhone Distribution: Your Team
+  project_name: yourprojectname
 staging:
   aws_key: your_s3_key
   aws_secret: your_s3_secret
   bucket: mybucket
   path: folderinmybucket
-  provisioning_profile_name: name_of_your_pp
+  signing_identity: iPhone Distribution: Your Team
+  project_name: yourprojectname
 production:
   aws_key: your_s3_key
   aws_secret: your_s3_secret
   bucket: mybucket
   path: folderinmybucket
-  provisioning_profile_name: name_of_your_pp
+  signing_identity: iPhone Distribution: Your Team
+  project_name: yourprojectname

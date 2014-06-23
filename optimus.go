@@ -14,6 +14,7 @@ func main() {
 	environment := os.Args[1]
 
 	loadConfig(environment)
+
 	buildIPA()
 	log.Println(skittles.BoldGreen("All done!"))
 }
