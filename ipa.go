@@ -29,7 +29,7 @@ func buildIPA() {
 	}
 
 	log.Println(skittles.BoldCyan("Building ipa..."))
-	out, err = exec.Command("xcodebuild", "-exportArchive", "-exportFormat", "ipa", "-archivePath", archive, "-exportPath", ipa, "-exportSigningIdentity", Config.signingIdentity).CombinedOutput()
+	out, err = exec.Command("xcodebuild", "-exportArchive", "-exportFormat", "ipa", "-archivePath", archive, "-exportPath", ipa, "-exportSigningIdentity", strings.Replace(Config.signingIdentity, "\"", "", -1)).CombinedOutput()
 	if err != nil {
 		log.Fatal(skittles.Red(string(out)))
 	}
