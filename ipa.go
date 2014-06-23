@@ -6,6 +6,7 @@ import (
 	"launchpad.net/goamz/aws"
 	"launchpad.net/goamz/s3"
 	"log"
+	"os"
 	"os/exec"
 	"strings"
 )
@@ -38,7 +39,7 @@ func buildIPA() {
 
 func uploadIPA(file string) {
 	log.Println(skittles.BoldCyan("Uploading ipa..."))
-	s := s3.New(aws.Auth{Config.awsKey, Config.awsSecret}, aws.USWest2)
+	s := s3.New(aws.Auth{Config.awsKey, Config.awsSecret}, aws.USEast)
 	bucket := s.Bucket(Config.bucket)
 	b, err := ioutil.ReadFile(file)
 
@@ -46,8 +47,17 @@ func uploadIPA(file string) {
 		log.Fatal(skittles.Red(err))
 	}
 
-	err = bucket.Put("/"+Config.path, b, "text/plain", s3.PublicRead)
+	err = bucket.Put("/"+Config.path+"/"+Config.projectName+IPA, b, "application/x-itunes-ipa", s3.PublicRead)
+	if err != nil {
+		log.Fatal(skittles.Red(err))
+	}
 
+	err = os.RemoveAll(Config.projectName + Archive)
+	if err != nil {
+		log.Fatal(skittles.Red(err))
+	}
+
+	err = os.Remove(Config.projectName + IPA)
 	if err != nil {
 		log.Fatal(skittles.Red(err))
 	}
