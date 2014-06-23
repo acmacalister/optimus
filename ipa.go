@@ -46,7 +46,7 @@ func uploadIPA(file string) {
 		log.Fatal(skittles.Red(err))
 	}
 
-	err = bucket.Put(Config.path, b, "text/plain", s3.PublicRead)
+	err = bucket.Put("/"+Config.path, b, "text/plain", s3.PublicRead)
 
 	if err != nil {
 		log.Fatal(skittles.Red(err))
