@@ -5,6 +5,7 @@ development:
   path: folderinmybucket
   signing_identity: "iPhone Distribution: Your Team"
   project_name: yourprojectname
+  provisioning_profile: "profilename"
 staging:
   aws_key: your_s3_key
   aws_secret: your_s3_secret
@@ -12,6 +13,7 @@ staging:
   path: folderinmybucket
   signing_identity: "iPhone Distribution: Your Team"
   project_name: yourprojectname
+  provisioning_profile: "profilename"
 production:
   aws_key: your_s3_key
   aws_secret: your_s3_secret
@@ -19,3 +21,4 @@ production:
   path: folderinmybucket
   signing_identity: "iPhone Distribution: Your Team"
   project_name: yourprojectname
+  provisioning_profile: "profilename"

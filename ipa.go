@@ -29,7 +29,13 @@ func buildIPA() {
 	}
 
 	log.Println(skittles.BoldCyan("Building ipa..."))
-	out, err = exec.Command("xcodebuild", "-exportArchive", "-exportFormat", "ipa", "-archivePath", archive, "-exportPath", ipa, "-exportSigningIdentity", strings.Replace(Config.signingIdentity, "\"", "", -1)).CombinedOutput()
+	signingCmd := "-exportSigningIdentity"
+	signingName := strings.Replace(Config.signingIdentity, "\"", "", -1)
+	if Config.provisioningProfile != "" {
+		signingCmd = "-exportProvisioningProfile"
+		signingName = Config.provisioningProfile
+	}
+	out, err = exec.Command("xcodebuild", "-exportArchive", "-exportFormat", "ipa", "-archivePath", archive, "-exportPath", ipa, signingCmd, signingName).CombinedOutput()
 	if err != nil {
 		log.Fatal(skittles.Red(string(out)))
 	}
